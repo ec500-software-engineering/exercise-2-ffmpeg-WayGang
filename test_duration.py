@@ -3,9 +3,9 @@ import main
 
 def test_duration():
 
-    OrigV = './video.mov'
-    Conv480 = './video_480p.mov'
-    Conv720 = './video_720p.mov'
+    OrigV = './1video.mov'
+    Conv480 = './1video_480p.mov'
+    Conv720 = './1video_720p.mov'
 
     ffOri = main.ffprobe(OrigV)
     ff480 = main.ffprobe(Conv480)
