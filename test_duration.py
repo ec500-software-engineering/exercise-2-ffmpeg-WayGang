@@ -1,7 +1,6 @@
 from pytest import approx
 import main
 
-
 def test_duration():
 
     OrigV = './video.mov'
