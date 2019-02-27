@@ -57,9 +57,8 @@ if __name__ == '__main__':
         # print("debug2")
 '''
 
-def v480(file, out480):
 
-    print('Start process' + file + ' to 480p')
+def v480(file, out480):
 
     try:
         subprocess.call(['ffmpeg',
@@ -75,7 +74,6 @@ def v480(file, out480):
 
 def v720(file, out720):
 
-    print('Start process' + file + ' to 720p')
     try:
         subprocess.call(['ffmpeg',
                          '-i', file,
@@ -103,30 +101,24 @@ def ffprobe(file):
 def go():
     q = queue.Queue()
     thread_list = []
-    t = 0
-
-    '''Serrch all mp4 files in the directory'''
+    filenums = 0
     try:
         for file in os.listdir("./"):
             format = file.split('.')
             if format[-1] == 'mov':
                 out720 = format[0] + '_720p.' + format[-1]
                 out480 = format[0] + '_480p.' + format[-1]
-
-                # print(file)
                 q.put(file)
                 thread_list.append(threading.Thread(target=v480, args=(file, out480)))
                 thread_list.append(threading.Thread(target=v720, args=(file, out720)))
-                t = t + 1
+                filenums = filenums + 1
 
     except Exception:
         print(Exception)
 
-    print(str(t) + ' files in the process')
-
+    print(str(filenums) + ' files in the process')
     for thread in thread_list:
         thread.start()
 
 if __name__ == '__main__':
     go()
-
