@@ -11,9 +11,9 @@ def test_duration():
     ff480 = main.ffprobe(Conv480)
     ff720 = main.ffprobe(Conv720)
 
-    info_in = int(ffOri['streams'][0]['duration'])
-    info_480 = int(ff480['streams'][0]['duration'])
-    info_720 = int(ff720['streams'][0]['duration'])
+    info_in = float(ffOri['streams'][0]['duration'])
+    info_480 = float(ff480['streams'][0]['duration'])
+    info_720 = float(ff720['streams'][0]['duration'])
 
     assert info_in == approx(info_480)
     assert info_in == approx(info_720)
