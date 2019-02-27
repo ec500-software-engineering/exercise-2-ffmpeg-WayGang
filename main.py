@@ -61,6 +61,7 @@ if __name__ == '__main__':
 def v480(file, out480):
 
     try:
+        print('-------480p processing-------')
         subprocess.call(['ffmpeg',
                          '-i', file,
                          '-r', '30',
@@ -68,13 +69,14 @@ def v480(file, out480):
                          '-s', 'hd480',
                          '-loglevel', 'quiet',
                          out480])
-        print('-------480p processing-------')
+        print('-------480p done!-------')
     except Exception:
         print(Exception)
 
 def v720(file, out720):
 
     try:
+        print('-------720p processing-------')
         subprocess.call(['ffmpeg',
                          '-i', file,
                          '-r', '30',
@@ -82,7 +84,7 @@ def v720(file, out720):
                          '-s', 'hd720',
                          '-loglevel', 'quiet',
                          out720])
-        print('-------720p processing-------')
+        print('-------720p done!-------')
     except Exception:
         print(Exception)
 
@@ -93,12 +95,12 @@ def ffprobe(file):
                                     '-print_format', 'json',
                                     '-show_streams',
                                     '-show_format',
-                                    str(file)],
-                                   text=True)
+                                    str(file)])
+    meta = meta.decode("utf-8")
     return json.loads(meta)
 
 
-def go():
+def thread():
     q = queue.Queue()
     thread_list = []
     filenums = 0
@@ -116,9 +118,9 @@ def go():
     except Exception:
         print(Exception)
 
-    print(str(filenums) + ' files in the process')
+    print(str(filenums) + ' files in total')
     for thread in thread_list:
         thread.start()
 
 if __name__ == '__main__':
-    go()
+    thread()
