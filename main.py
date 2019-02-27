@@ -96,7 +96,7 @@ def ffprobe(file):
                                     '-show_streams',
                                     '-show_format',
                                     str(file)],text=True)
-    meta = meta.decode("utf-8")
+    #meta = meta.decode("utf-8")
     return json.loads(meta)
 
 
